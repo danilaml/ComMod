@@ -11,15 +11,15 @@ class DrawingWidget;
 
 class MainWindow : public QMainWindow
 {
-	Q_OBJECT
+    Q_OBJECT
 
 public:
-	explicit MainWindow(QWidget *parent = 0);
-	~MainWindow();
+    explicit MainWindow(QWidget *parent = 0);
+    ~MainWindow();
 
 private:
-	Ui::MainWindow *ui;
-	DrawingWidget *dw;
+    Ui::MainWindow *ui;
+    DrawingWidget *dw;
 };
 
 #endif // MAINWINDOW_H

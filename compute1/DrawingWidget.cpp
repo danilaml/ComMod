@@ -5,7 +5,6 @@
 
 #include "DrawingWidget.h"
 
-
 constexpr double DefaultCenterX = -0.637011f;
 constexpr double DefaultCenterY = -0.0395159f;
 constexpr double DefaultScale = 0.00403897f;
@@ -21,7 +20,7 @@ DrawingWidget::DrawingWidget(RenderThread *t, QWidget *parent)
 
     setRenderThread(t);
 
-	setFocusPolicy(Qt::StrongFocus);
+    setFocusPolicy(Qt::StrongFocus);
     // Not needed since embedded? setWindowTitle(tr("Mandelbrot"));
 #ifndef QT_NO_CURSOR
     setCursor(Qt::CrossCursor);
@@ -30,20 +29,20 @@ DrawingWidget::DrawingWidget(RenderThread *t, QWidget *parent)
 
 void DrawingWidget::resetDefaults()
 {
-	centerX = DefaultCenterX;
+    centerX = DefaultCenterX;
     centerY = DefaultCenterY;
     pixmapScale = DefaultScale;
     curScale = DefaultScale;
-	pixmap = QPixmap();
+    pixmap = QPixmap();
 }
 
 void DrawingWidget::setRenderThread(RenderThread *t)
 {
-	delete thread;
-	thread = t;
-	resetDefaults();
-	connect(thread, &RenderThread::renderedImage, this, &DrawingWidget::updatePixmap);
-	thread->render(centerX, centerY, curScale, size());
+    delete thread;
+    thread = t;
+    resetDefaults();
+    connect(thread, &RenderThread::renderedImage, this, &DrawingWidget::updatePixmap);
+    thread->render(centerX, centerY, curScale, size());
 }
 
 void DrawingWidget::paintEvent(QPaintEvent * /* event */)

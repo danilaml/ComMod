@@ -5,13 +5,13 @@
 
 class JuliaRenderThread : public RenderThread
 {
-Q_OBJECT
+    Q_OBJECT
 
 public:
-	explicit JuliaRenderThread(QObject *parent = nullptr);
+    explicit JuliaRenderThread(QObject *parent = nullptr);
 
 protected:
-	void run() override;
+    void run() override;
 };
 
 #endif // JULIARENDERTHREAD_H

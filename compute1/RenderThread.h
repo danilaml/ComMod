@@ -8,19 +8,16 @@
 
 class RenderThread : public QThread
 {
-	Q_OBJECT
+    Q_OBJECT
 
 public:
-	explicit RenderThread(QObject *parent = nullptr);
-	~RenderThread();
+    explicit RenderThread(QObject *parent = nullptr);
+    ~RenderThread();
 
-	void render(double centerX, double centerY, double scaleFactor, QSize resultSize);
+    void render(double centerX, double centerY, double scaleFactor, QSize resultSize);
 
 signals:
     void renderedImage(const QImage &image, double scaleFactor);
-
-//protected:
-//    void run() Q_DECL_OVERRIDE;
 
 protected:
 

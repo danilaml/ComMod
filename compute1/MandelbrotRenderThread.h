@@ -5,12 +5,12 @@
 
 class MandelbrotRenderThread : public RenderThread
 {
-	Q_OBJECT
+    Q_OBJECT
 public:
-	explicit MandelbrotRenderThread(QObject *parent = nullptr);
+    explicit MandelbrotRenderThread(QObject *parent = nullptr);
 
 protected:
-	void run() override;
+    void run() override;
 };
 
 #endif // MANDELBROTRENDERTHREAD_H

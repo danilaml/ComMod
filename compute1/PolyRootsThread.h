@@ -5,13 +5,13 @@
 
 class PolyRootsThread : public RenderThread
 {
-Q_OBJECT
+    Q_OBJECT
 
 public:
-	explicit PolyRootsThread(QObject *parent);
+    explicit PolyRootsThread(QObject *parent);
 
 protected:
-	void run() override;
+    void run() override;
 };
 
 #endif // POLYROOTSTHREAD_H

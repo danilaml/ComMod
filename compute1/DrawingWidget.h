@@ -12,7 +12,7 @@ class DrawingWidget : public QWidget
 public:
     DrawingWidget(RenderThread *t, QWidget *parent = 0);
 
-	void setRenderThread(RenderThread *t);
+    void setRenderThread(RenderThread *t);
 
 protected:
     void paintEvent(QPaintEvent *event) override;
@@ -31,7 +31,7 @@ private slots:
 
 private:
     void scroll(int deltaX, int deltaY);
-	void resetDefaults();
+    void resetDefaults();
 
     RenderThread *thread;
     QPixmap pixmap;
