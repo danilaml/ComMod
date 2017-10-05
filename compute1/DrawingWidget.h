@@ -1,5 +1,5 @@
-#ifndef MANDELBROTWIDGET_H
-#define MANDELBROTWIDGET_H
+#ifndef DRAWINGWIDGET_H
+#define DRAWINGWIDGET_H
 
 #include <QPixmap>
 #include <QWidget>
@@ -43,4 +43,4 @@ private:
     double curScale;
 };
 
-#endif // MANDELBROTWIDGET_H
+#endif // DRAWINGWIDGET_H
