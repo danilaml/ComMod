@@ -19,7 +19,8 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(ui->pushButton, &QPushButton::clicked, this, [this](){
        ui->widget->updateField(ui->spinBox->value(),
                                ui->spinBox_2->value(),
-                               toEnum.at(ui->comboBox->currentText()));
+                               toEnum.at(ui->comboBox->currentText()),
+                               ui->spinBox_3->value());
     });
 }
 

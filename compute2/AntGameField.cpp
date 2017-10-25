@@ -5,16 +5,16 @@
 
 #include <QDebug>
 
-constexpr int stepTime = 50; // todo - make this a parameter?
-
 AntGameField::AntGameField(QWidget *parent) :
     QWidget(parent),
     mScale(8),
     mSteps(0),
     mCurStep(0),
+    mStepTime(50),
     mCurPos(),
     mDir(Direction::UP),
-    mImage()
+    mImage(),
+    mTimer()
 {
     mImage.fill(Qt::white);
     connect(&mTimer, &QTimer::timeout, this, &AntGameField::nextStep);
@@ -35,7 +35,7 @@ void AntGameField::paintEvent(QPaintEvent *)
     painter.drawImage(rect(), mImage);
 }
 
-void AntGameField::updateField(int steps, int scale, Direction dir)
+void AntGameField::updateField(int steps, int scale, Direction dir, int time)
 {
     mScale = scale;
     mImage = QImage(size() / mScale, QImage::Format_RGB32); // maybe use mono
@@ -44,8 +44,9 @@ void AntGameField::updateField(int steps, int scale, Direction dir)
     mDir = dir;
     mSteps = steps;
     mCurStep = 0;
+    mStepTime = time;
 
-    mTimer.start(stepTime);
+    mTimer.start(mStepTime);
 }
 
 void AntGameField::nextStep()

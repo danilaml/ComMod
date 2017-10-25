@@ -24,13 +24,14 @@ protected:
     void paintEvent(QPaintEvent *) override;
 
 public slots:
-    void updateField(int steps, int scale, Direction dir);
+    void updateField(int steps, int scale, Direction dir, int time);
     void nextStep();
 
 private:
     int mScale;
     int mSteps;
     int mCurStep;
+    int mStepTime;
     QPoint mCurPos;
     Direction mDir;
     QImage mImage;
