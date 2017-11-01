@@ -48,6 +48,8 @@ void LogisticLattice::runSimulation(int iterations)
 		drawIterations();
 	}
 	update();
+
+	emit finished();
 }
 
 void LogisticLattice::resetSimulation()
@@ -84,7 +86,7 @@ void LogisticLattice::drawIterations()
 	}
 	for (int i = 0; i < mH; ++i) {
 		for (int j = 0; j < mW; ++j) {
-			mXs[i][j] = rij * (1. - mXs[i][j]) + mCs[i][j];
+			mXs[i][j] = rij * mXs[i][j] * (1. - mXs[i][j]) + mCs[i][j];
 			mXs[i][j] = std::max(std::min(mXs[i][j], 1.0), 0.0);
 			mImage.setPixel(i, j, toRgb(mXs[i][j]));
 		}
@@ -99,6 +101,7 @@ void LogisticLattice::fillTableWithRandom()
 	for (int i = 0; i < mH; ++i) {
 		for (int j = 0; j < mW; ++j) {
 			mXs[i][j] = dis(gen);
+			mImage.setPixel(i, j, toRgb(mXs[i][j]));
 		}
 	}
 }

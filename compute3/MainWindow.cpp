@@ -9,9 +9,39 @@ MainWindow::MainWindow(QWidget *parent) :
 {
 	ui->setupUi(this);
 
-	connect(ui->nextButton, &QPushButton::pressed, this, [this]{
+	mTimer.setInterval(100);
+	connect(&mTimer, &QTimer::timeout, this, [this]{
 		ui->widget->runSimulation(ui->spinBox->value());
 	});
+
+	connect(ui->nextButton, &QPushButton::pressed, this, [this]{
+		if (mTimer.isActive()) {
+			mTimer.stop();
+			ui->nextButton->setEnabled(true);
+			ui->resetButton->setEnabled(true);
+			ui->checkBox->setEnabled(true);
+			ui->nextButton->setText(tr("Next"));
+		} else {
+			ui->resetButton->setDisabled(true);
+			ui->checkBox->setDisabled(true);
+			if (!ui->checkBox->isChecked()) {
+				ui->nextButton->setText(tr("Stop"));
+				mTimer.start();
+			} else {
+				ui->nextButton->setDisabled(true);
+			}
+			ui->widget->runSimulation(ui->spinBox->value());
+		}
+	});
+
+	connect(ui->widget, &LogisticLattice::finished, this, [this]{
+		if (!mTimer.isActive()) {
+			ui->nextButton->setEnabled(true);
+			ui->resetButton->setEnabled(true);
+			ui->checkBox->setEnabled(true);
+		}
+	});
+
 	QAction *settingAction = new QAction(tr("Settings"), this);
 	ui->menuBar->addAction(settingAction);
 	connect(ui->resetButton, &QPushButton::pressed, ui->widget, &LogisticLattice::resetSimulation);

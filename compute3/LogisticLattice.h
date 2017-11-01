@@ -22,6 +22,9 @@ public slots:
 	void runSimulation(int iterations);
 	void resetSimulation();
 
+signals:
+	void finished();
+
 protected:
     void paintEvent(QPaintEvent *) override;
 
@@ -33,8 +36,8 @@ private:
 	double mFillValue;
 
 	QImage mImage;
-	static constexpr int mH = 256;
-	static constexpr int mW = 256;
+	static constexpr int mH = 128;//256;
+	static constexpr int mW = mH;//256;
 	using table_t = std::array<std::array<double, mW>, mH>;
 	table_t mXs{};
 	table_t mCs{};
